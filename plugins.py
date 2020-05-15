@@ -10,8 +10,8 @@ def ns(s):
     return ''.join([NS, s])
 
 def header():
-    rows.append('##### OJS / OMP / OPS Plugins - list')
-    rows.append('##### OJS / OMP / OPS Plugins - list')
+    rows.append('### OJS / OMP / OPS Plugins - list')
+
     rows.append('|Plugin|Name|OJS|OMP|OPS|category|Summary|Homepage')
     rows.append('|---|---|---|---|---|---|---|---|')
 
