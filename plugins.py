@@ -19,7 +19,7 @@ def plugins():
     for product in root:
         category = product.attrib.get('category')
         plugin = product.attrib.get('product')
-        applications = [':x:', ':x:', ':x:']
+        applications = ['', '', '']
         for metadata in product:
             if metadata.tag == ns('name'): name = metadata.text
             if metadata.tag == ns('homepage'): homepage = '[{}]({})'.format(name, metadata.text)
