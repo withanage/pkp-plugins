@@ -1,6 +1,6 @@
 ##### OJS / OMP / OPS Plugins - list
 ##### OJS / OMP / OPS Plugins - list
-|Plugin|Name|OJS|OMP|OPS|category| Homepage|Summary
+|Plugin|Name|OJS|OMP|OPS|category|Summary|Homepage
 |---|---|---|---|---|---|---|---|
 |hypothesis|Hypothes.is|:ok:|:x:|:ok:|generic|This plugin integrates the Hypothes.is annotation tool into articles.|[Hypothes.is](https://github.com/asmecher/hypothesis)
 |shibboleth|Shibboleth|:ok:|:x:|:x:|generic|This plugin adds Shibboleth support.|[Shibboleth](https://github.com/pkp/shibboleth)

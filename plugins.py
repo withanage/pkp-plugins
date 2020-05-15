@@ -12,7 +12,7 @@ def ns(s):
 def header():
     rows.append('##### OJS / OMP / OPS Plugins - list')
     rows.append('##### OJS / OMP / OPS Plugins - list')
-    rows.append('|Plugin|Name|OJS|OMP|OPS|category| Homepage|Summary')
+    rows.append('|Plugin|Name|OJS|OMP|OPS|category|Summary|Homepage')
     rows.append('|---|---|---|---|---|---|---|---|')
 
 def plugins():
