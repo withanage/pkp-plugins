@@ -26,7 +26,7 @@ def ns(s):
     return ''.join([NS, s])
 
 def header():
-    rows.append('### OJS / OMP / OPS Plugins - list')
+    rows.append('### OJS / OMP / OPS Plugins in Plugin Gallery')
 
     rows.append('|'.join(['Plugin','OJS','OPS','OMP','Summary']))
     rows.append('|---|---|---|---|---')
