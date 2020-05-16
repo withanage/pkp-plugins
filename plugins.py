@@ -2,10 +2,10 @@ import xml.etree.ElementTree as ET
 from string import Template
 import requests
 import sys
-from collections import OrderedDict
+
 
 NS = '{http://pkp.sfu.ca}'
-
+PKP_SOFTWARE = ['ojs2', 'ops', 'omp']
 
 def get_xml():
     r = requests.get('https://pkp.sfu.ca/ojs/xml/plugins.xml')
@@ -28,10 +28,10 @@ def ns(s):
 def header():
     rows.append('### OJS / OMP / OPS Plugins - list')
 
-    rows.append('|Plugin|OJS|OMP|OPS|Summary')
+    rows.append('|'.join(['Plugin','OJS','OPS','OMP','Summary']))
     rows.append('|---|---|---|---|---')
 
-def plugins():
+def run():
     plugins = {}
     for product in root:
         rank = 0
@@ -39,6 +39,7 @@ def plugins():
         p = product.attrib.get('product')
         plugins[p] = {}
         applications = ['-', '-', '-']
+        software_present = [{i:False} for i in PKP_SOFTWARE]
         for metadata in product:
             if metadata.tag == ns('name'): name = metadata.text
             if metadata.tag == ns('homepage'): plugin = '[{}]({})'.format(name, metadata.text)
@@ -47,9 +48,12 @@ def plugins():
             if metadata.tag == ns('release'):
                 for release in metadata:
                     if release.tag == ns('compatibility'):
-                        for i, val in enumerate(['ojs2', 'omp', 'ops']):
+
+                        for i, val in enumerate(PKP_SOFTWARE):
                             if release.attrib.get('application') == val:
-                                rank += 1
+                                if software_present[i][val] == False:
+                                    rank += len(PKP_SOFTWARE) -i
+                                software_present[i][val] = True
                                 applications[i] = ':ok:'
         row = s.substitute(plugin=plugin,summary=summary,
                            applications='|'.join(applications))
@@ -66,8 +70,10 @@ def main():
     file = open("README.md", "w")
     file.write('\n'.join(rows))
     file.write('\n')
-    for i in sorted(plugins().items()):
-        file.write(i[1].get('row'))
+    items = run().items()
+    for itm in sorted(items, key= lambda i:i[1]['rank'], reverse=True):
+        file.write(itm[1].get('row'))
+        print(itm[1].get('rank'))
         file.write('\n')
 
 
