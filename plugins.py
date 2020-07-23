@@ -8,7 +8,7 @@ NS = '{http://pkp.sfu.ca}'
 PKP_SOFTWARE = ['ojs2', 'ops', 'omp']
 
 def get_xml():
-    r = requests.get('https://pkp.sfu.ca/ojs/xml/plugins.xml')
+    r = requests.get('https://github.com/pkp/plugin-gallery/blob/master/plugins.xml')
     if r.status_code == 200:
         file = open("plugins.xml", "w")
         file.write(r.content.decode("utf-8"))
